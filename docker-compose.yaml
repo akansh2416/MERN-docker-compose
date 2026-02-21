@@ -1,4 +1,15 @@
 services:
+  nginx:
+    image: nginx:latest
+    ports: 
+       - "80:80"
+    volumes:
+       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on: 
+       -frontend
+       -backend
+    networks:
+       -mern_network 
   backend:
     build: ./mern/backend
     ports:
@@ -17,7 +28,7 @@ services:
     networks:
       - mern_network
     environment:
-      REACT_APP_API_URL: http://backend:5050 
+      REACT_APP_API_URL: /api 
 
   mongodb:
     image: mongo:latest  
