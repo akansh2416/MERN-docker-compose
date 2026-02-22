@@ -12,8 +12,8 @@ services:
        - mern_network 
   backend:
     build: ./mern/backend
-    ports:
-      - "5050:5050" 
+    expose:
+      - "5050" 
     networks:
       - mern_network
     environment:
